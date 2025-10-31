@@ -1,0 +1,66 @@
+import os
+import threading
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from utils.logger import log_info
+from trading.balance_manager import load_state
+from utils.config import TELEGRAM_TOKEN
+
+# Variable global de estado
+BOT_STATUS = {"state": "inactivo"}
+
+# ==== COMANDOS ====
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    BOT_STATUS["state"] = "activo"
+    await update.message.reply_text(
+        "?? ¡Hola! Soy tu bot de trading IA.\n"
+        "Puedo mostrarte tu balance, estado y más.\n\n"
+        "Comandos disponibles:\n"
+        "/balance - Ver tu capital actual\n"
+        "/status - Ver el estado del bot\n"
+        "/pause - Pausar operaciones\n"
+        "/resume - Reanudar operaciones"
+    )
+
+async def balance(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    state = load_state()
+    capital = state.get("capital", 0.0)
+    await update.message.reply_text(f"?? Capital actual: {capital:.2f} USDT")
+
+async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    estado = BOT_STATUS.get("state", "inactivo")
+    await update.message.reply_text(f"?? Estado actual del bot: {estado.upper()}")
+
+async def pause(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    BOT_STATUS["state"] = "pausado"
+    await update.message.reply_text("?? Bot pausado. No ejecutará operaciones nuevas hasta que lo reanudes.")
+
+async def resume(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    BOT_STATUS["state"] = "activo"
+    await update.message.reply_text("?? Bot reanudado. Volviendo a analizar el mercado y operar.")
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "/start - Iniciar el bot\n"
+        "/balance - Ver tu capital\n"
+        "/status - Ver estado actual\n"
+        "/pause - Pausar trading\n"
+        "/resume - Reanudar trading\n"
+        "/help - Mostrar ayuda"
+    )
+
+# ==== INICIO DEL BOT TELEGRAM ====
+
+def run_telegram_bot():
+    app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
+
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("balance", balance))
+    app.add_handler(CommandHandler("status", status))
+    app.add_handler(CommandHandler("pause", pause))
+    app.add_handler(CommandHandler("resume", resume))
+    app.add_handler(CommandHandler("help", help_command))
+
+    log_info("?? Bot de Telegram iniciado correctamente.")
+    app.run_polling()
