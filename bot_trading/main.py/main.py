@@ -25,29 +25,29 @@ def main_loop():
                 time.sleep(10)
                 continue
 
-            # Predecir el último registro (más reciente)
+            # Predecir el Ãºltimo registro (mÃ¡s reciente)
             latest_X = X[-1].reshape(1, -1)
             pred_label = pred.predict(latest_X)[0]  # 1=sube, 0=baja
             price = df["close"].iloc[-1]
             capital = state.get("capital", 0.0)
             qty = calc_order_amount(capital, price)
 
-            log_info(f"Predicción: {pred_label} | Precio: {price} | Capital: {capital:.2f}")
+            log_info(f"PredicciÃ³n: {pred_label} | Precio: {price} | Capital: {capital:.2f}")
 
             if pred_label == 1:
                 # Simulamos compra de mercado (test)
                 execute_trade("BUY", qty, price, reason="predicted_up")
-                # Aquí deberíamos monitorizar y calcular P/L luego de cierre; por ahora simulamos ganancia ficticia
+                # AquÃ­ deberÃ­amos monitorizar y calcular P/L luego de cierre; por ahora simulamos ganancia ficticia
                 simulated_profit = price * qty * 0.001  # ejemplo minigana 0.1%
                 new_cap = update_after_trade(simulated_profit)
                 state["capital"] = new_cap
-                log_info(f"Operación simulada ganancia: {simulated_profit:.6f} new capital: {new_cap:.6f}")
+                log_info(f"OperaciÃ³n simulada ganancia: {simulated_profit:.6f} new capital: {new_cap:.6f}")
             else:
-                log_info("No se ejecuta operación (predice caída).")
+                log_info("No se ejecuta operaciÃ³n (predice caÃ­da).")
 
             # Aprendizaje incremental: usar la etiqueta real del pasado reciente
             # (en entorno real hay que construir y pasar y_true)
-            # Aquí no implementamos re-etiquetado automático por simplicidad.
+            # AquÃ­ no implementamos re-etiquetado automÃ¡tico por simplicidad.
 
             time.sleep(30)  # ciclo principal; ajustar a SLEEP_SECONDS de config
 
@@ -57,3 +57,4 @@ def main_loop():
 
 if __name__ == "__main__":
     main_loop()
+
