@@ -1,8 +1,0 @@
-pandas
-numpy
-scikit-learn
-python-binance
-ta
-apscheduler
-python-telegram-bot
-joblib
