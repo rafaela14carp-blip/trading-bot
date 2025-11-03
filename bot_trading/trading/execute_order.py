@@ -22,7 +22,7 @@ def place_test_order(side, qty):
         return None
 
 def execute_trade(side, qty, price, reason="signal"):
-    # Este es el punto donde en main se tomaría la decisión
+    # Este es el punto donde en main se tomarÃ­a la decisiÃ³n
     res = place_test_order(side, qty)
     entry = {
         "timestamp": int(time.time()),
