@@ -14,8 +14,8 @@ BOT_STATUS = {"state": "inactivo"}
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     BOT_STATUS["state"] = "activo"
     await update.message.reply_text(
-        "?? ¡Hola! Soy tu bot de trading IA.\n"
-        "Puedo mostrarte tu balance, estado y más.\n\n"
+        "?? Â¡Hola! Soy tu bot de trading IA.\n"
+        "Puedo mostrarte tu balance, estado y mÃ¡s.\n\n"
         "Comandos disponibles:\n"
         "/balance - Ver tu capital actual\n"
         "/status - Ver el estado del bot\n"
@@ -34,7 +34,7 @@ async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def pause(update: Update, context: ContextTypes.DEFAULT_TYPE):
     BOT_STATUS["state"] = "pausado"
-    await update.message.reply_text("?? Bot pausado. No ejecutará operaciones nuevas hasta que lo reanudes.")
+    await update.message.reply_text("?? Bot pausado. No ejecutarÃ¡ operaciones nuevas hasta que lo reanudes.")
 
 async def resume(update: Update, context: ContextTypes.DEFAULT_TYPE):
     BOT_STATUS["state"] = "activo"
