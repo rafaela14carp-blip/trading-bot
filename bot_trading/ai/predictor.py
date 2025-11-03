@@ -23,7 +23,7 @@ class SimplePredictor:
             preds = self.model.predict(X)
             return preds
         except Exception:
-            # en caso de que no esté entrenado
+            # en caso de que no estÃ© entrenado
             return np.zeros(X.shape[0], dtype=int)
 
     def partial_fit(self, X, y):
