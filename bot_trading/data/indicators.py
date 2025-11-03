@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 def add_indicators(df: pd.DataFrame):
-    # EMA r·pida y lenta
+    # EMA r√°pida y lenta
     df = df.copy()
     df["ema8"] = df["close"].ewm(span=8, adjust=False).mean()
     df["ema21"] = df["close"].ewm(span=21, adjust=False).mean()
