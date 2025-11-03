@@ -19,7 +19,7 @@ def run_initial_training():
     X, y = prepare_features(df)
     if len(X) > 10:
         pred = SimplePredictor()
-        log_info("Entrenando modelo inicial con datos históricos...")
+        log_info("Entrenando modelo inicial con datos histÃ³ricos...")
         pred.partial_fit(X, y)
         log_info("Entrenamiento inicial completado.")
     else:
