@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.linear_model import SGDClassifier
 import joblib
 from pathlib import Path
+from bot_trading.utils.logger import log_info
 
 MODEL_PATH = Path("ai_model.pkl")
 
@@ -33,3 +34,4 @@ class SimplePredictor:
             # guardar modelo
             import joblib
             joblib.dump(self.model, MODEL_PATH)
+
