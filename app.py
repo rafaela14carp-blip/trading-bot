@@ -1,5 +1,8 @@
 import sys
-sys.path.append('bot_trading')
+import os
+
+# Agregar la carpeta bot_trading al path
+sys.path.append(os.path.join(os.path.dirname(__file__), 'bot_trading'))
 
 from main import main
 
