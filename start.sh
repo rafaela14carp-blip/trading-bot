@@ -1,3 +1,5 @@
 #!/bin/bash
 echo "Starting bot..."
-python3 -u ./bot_trading/main.py
+
+# Usar ruta absoluta y llamar al archivo como script (no como paquete)
+python3 -u bot_trading/main.py
