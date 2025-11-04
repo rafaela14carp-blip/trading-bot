@@ -1,6 +1,6 @@
 services:
-  - type: worker
+  - type: web
     name: trading-bot
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: bash start.sh
+    startCommand: python bot_trading/main.py
