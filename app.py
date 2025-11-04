@@ -1,11 +1,11 @@
 import sys
 import os
 
-# Agregar la carpeta bot_trading al path
+# Asegura que Python pueda encontrar el módulo dentro de bot_trading
 sys.path.append(os.path.join(os.path.dirname(__file__), 'bot_trading'))
 
-from main import main
+from bot_trading.main import main  # 👈 Import correcto
 
 if __name__ == "__main__":
-    print("Ejecutando bot desde app.py...")
+    print("🚀 Iniciando el bot desde app.py...")
     main()
