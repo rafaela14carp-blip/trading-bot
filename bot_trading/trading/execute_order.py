@@ -1,4 +1,4 @@
-from data.fetch_data import get_client
+from bot_trading.data.fetch_data import get_client
 from utils.config import SYMBOL, RISK_PER_TRADE, INITIAL_CAPITAL, STOP_LOSS_PCT, TAKE_PROFIT_PCT
 from bot_trading.utils.logger import log_info, log_trade
 import math, time
@@ -34,5 +34,6 @@ def execute_trade(side, qty, price, reason="signal"):
     }
     log_trade(entry)
     return res
+
 
 
