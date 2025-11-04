@@ -1,12 +1,10 @@
-import time
-import numpy as np
-from data.fetch_data import get_client, fetch_klines
-from data.indicators import add_indicators
-from ai.predictor import SimplePredictor
-from ai.trainer import run_initial_training, prepare_features
-from trading.execute_order import calc_order_amount, execute_trade
-from trading.balance_manager import load_state, update_after_trade
-from utils.logger import log_info
+from bot_trading.data.fetch_data import get_client, fetch_klines
+from bot_trading.data.indicators import add_indicators
+from bot_trading.ai.predictor import SimplePredictor
+from bot_trading.ai.trainer import run_initial_training, prepare_features
+from bot_trading.trading.execute_order import calc_order_amount, execute_trade
+from bot_trading.trading.balance_manager import load_state, update_after_trade
+from bot_trading.utils.logger import log_info
 
 def main_loop():
     # entrenamiento inicial
