@@ -1,6 +1,6 @@
 import numpy as np
 from bot_trading.ai.predictor import SimplePredictor
-from data.fetch_data import get_client, fetch_klines
+from bot_trading.data.fetch_data import get_client, fetch_klines
 from data.indicators import add_indicators
 from utils.logger import log_info
 
@@ -24,5 +24,6 @@ def run_initial_training():
         log_info("Entrenamiento inicial completado.")
     else:
         log_info("Datos insuficientes para entrenamiento inicial.")
+
 
 
