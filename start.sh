@@ -1,2 +1,3 @@
 #!/bin/bash
-python -u bot_trading/main.py
+echo "Starting bot..."
+python3 -u ./bot_trading/main.py
