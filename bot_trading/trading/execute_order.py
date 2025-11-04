@@ -2,7 +2,7 @@ from data.fetch_data import get_client
 from utils.config import SYMBOL, RISK_PER_TRADE, INITIAL_CAPITAL, STOP_LOSS_PCT, TAKE_PROFIT_PCT
 from bot_trading.utils.logger import log_info, log_trade
 import math, time
-
+from bot_trading.trading.balance_manager import update_after_trade
 client = get_client()
 
 def calc_order_amount(capital, price, risk_pct=RISK_PER_TRADE):
@@ -34,4 +34,5 @@ def execute_trade(side, qty, price, reason="signal"):
     }
     log_trade(entry)
     return res
+
 
