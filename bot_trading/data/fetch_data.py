@@ -5,7 +5,8 @@ from bot_trading.utils.logger import log_info
 
 def get_client():
     if USE_TESTNET:
-        client = Client(BINANCE_API_KEY, BINANCE_API_SECRET, testnet=True)
+        client = Client(BINANCE_API_KEY, BINANCE_API_SECRET)
+client.API_URL = 'https://testnet.binance.vision/api'
     else:
         client = Client(BINANCE_API_KEY, BINANCE_API_SECRET)
     return client
@@ -24,5 +25,6 @@ def fetch_klines(client: Client, symbol=SYMBOL, interval=INTERVAL, limit=FETCH_W
     df["volume"] = df["volume"].astype(float)
     df["open_time"] = pd.to_datetime(df["open_time"], unit="ms")
     return df
+
 
 
