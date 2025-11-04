@@ -54,4 +54,4 @@ def main_loop():
             time.sleep(10)
 
 if __name__ == "__main__":
-print("Bot iniciado correctamente en Render")
+    print("Bot iniciado correctamente en Render")
