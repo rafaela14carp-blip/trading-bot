@@ -1,4 +1,4 @@
-import os
+"from bot_trading.utils"
 
 USE_TESTNET = os.getenv("USE_BINANCE_TESTNET", "true").lower() == "true"
 
@@ -18,3 +18,4 @@ SYMBOL = "BTCUSDT"
 INTERVAL = "1m"               # timeframe para pruebas: 1m
 FETCH_WINDOW = 200            # barras históricas a usar
 SLEEP_SECONDS = 30            # ciclo principal
+
