@@ -1,2 +1,6 @@
-#!/usr/bin/env bash
-python bot_trading/main.py
+services:
+  - type: web
+    name: trading-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash start.sh
