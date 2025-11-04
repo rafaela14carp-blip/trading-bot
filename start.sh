@@ -1,6 +1,10 @@
-#!/bin/bash
-echo "Starting bot..."
+#!/usr/bin/env bash
+set -e
 
-# Usar ruta absoluta y llamar al archivo como script (no como paquete)
-python3 -u bot_trading/main.py
-python app.py
+echo "🚀 Iniciando bot de trading..."
+
+# Asegurarse de estar en la carpeta raíz
+cd "$(dirname "$0")"
+
+# Ejecutar el módulo principal
+python -m bot_trading.main
