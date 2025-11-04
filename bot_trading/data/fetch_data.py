@@ -1,31 +1,22 @@
 from binance.client import Client
-import pandas as pd
-from bot_trading.utils.config import BINANCE_API_KEY, BINANCE_API_SECRET, USE_TESTNET, SYMBOL, INTERVAL, FETCH_WINDOW
-from bot_trading.utils.logger import log_info
+import os
+
+BINANCE_API_KEY = os.getenv("BINANCE_API_KEY")
+BINANCE_API_SECRET = os.getenv("BINANCE_API_SECRET")
+
 
 def get_client():
-    if USE_TESTNET:
+    if os.getenv("USE_TESTNET", "true").lower() == "true":
         client = Client(BINANCE_API_KEY, BINANCE_API_SECRET)
         client.API_URL = 'https://testnet.binance.vision/api'
     else:
         client = Client(BINANCE_API_KEY, BINANCE_API_SECRET)
     return client
 
-def fetch_klines(client: Client, symbol=SYMBOL, interval=INTERVAL, limit=FETCH_WINDOW):
-    # devuelve DataFrame con columnas: open, high, low, close, volume, open_time
+
+def fetch_klines(symbol="BTCUSDT", interval="1h", limit=100):
+    client = get_client()
     klines = client.get_klines(symbol=symbol, interval=interval, limit=limit)
-    df = pd.DataFrame(klines, columns=[
-        "open_time","open","high","low","close","volume","close_time","qav",
-        "num_trades","taker_base_vol","taker_quote_vol","ignore"
-    ])
-    df["close"] = df["close"].astype(float)
-    df["open"] = df["open"].astype(float)
-    df["high"] = df["high"].astype(float)
-    df["low"] = df["low"].astype(float)
-    df["volume"] = df["volume"].astype(float)
-    df["open_time"] = pd.to_datetime(df["open_time"], unit="ms")
-    return df
-
-
+    return klines
 
 
