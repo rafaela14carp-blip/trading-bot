@@ -1,8 +1,8 @@
 import numpy as np
-from bot_trading.ai.predictor import SimplePredictor
 from bot_trading.data.fetch_data import get_client, fetch_klines
-from data.indicators import add_indicators
-from utils.logger import log_info
+from bot_trading.data.indicators import add_indicators
+from bot_trading.ai.predictor import SimplePredictor
+from bot_trading.utils.logger import log_info
 
 def prepare_features(df):
     # ejemplo simple: usar relacion EMA y rsi y mom
@@ -24,6 +24,7 @@ def run_initial_training():
         log_info("Entrenamiento inicial completado.")
     else:
         log_info("Datos insuficientes para entrenamiento inicial.")
+
 
 
 
