@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from utils.config import INITIAL_CAPITAL
+from bot_trading.utils.config import INITIAL_CAPITAL
 from bot_trading.utils.logger import log_info
 
 STATE_FILE = Path("state.json")
@@ -21,4 +21,5 @@ def update_after_trade(profit_loss):
     state["capital"] = state.get("capital", INITIAL_CAPITAL) + profit_loss
     save_state(state)
     return state["capital"]
+
 
